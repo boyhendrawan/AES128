@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module">
+        import CaesarChiper from "./Ceasar.js";
+        import AES128 from "./aes.js";
+        const plainText = "BOYHENRAWANPURBA";
+        const Caesar = new CaesarChiper(plainText, 3);
+        const encCaesar = Caesar.encrypt();
+        const AESS = new AES128(encCaesar, "KRIPTOGRAFIAESKU");
+        const valCiper = AESS.encription();
+        const AESDESC = AESS.desc(valCiper, "KRIPTOGRAFIAESKU");
+        const originPlainText = Caesar.description(AESDESC);
+
+        console.log(`\n\nPlain Text = ${plainText} 
+Enkripsi Ceasar = ${encCaesar} Enkripsi AES = ${valCiper}  
+Deskripsi AES = ${AESDESC} ,Dekripsi Ceasar = ${originPlainText}\n\n`);
+
+
+    </script>
+</body>
+
+</html>
