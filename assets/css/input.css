@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer utilities {
+  .active {
+    @apply bg-gradient-to-r from-[#28ac50]  to-[#56B4D3];
+  }
+  .unactive {
+    @apply bg-slate-400;
+  }
+  .btn-slider {
+    @apply after:absolute after:content-[''] after:bg-white  after:left-0 after:top-0 after:rounded-lg hover:after:w-full after:w-0 after:h-full after:opacity-30  after:transition-[width] after:duration-300;
+  }
+}

@@ -1,4 +1,5 @@
-export default class AES {
+// for convinient i can't do it with modular
+class AES {
   defaultTable = [
     ["02", "03", "01", "01"],
     ["01", "02", "03", "01"],
@@ -349,8 +350,9 @@ export default class AES {
       ["0B", "0D", "09", "0E"],
     ];
     const ciperToArray = this.#dataToArray(CiperText);
-    // console.log(ciperToArray);
-    const arrayKey = this.#dataToArray(this.key);
+
+    const arrayKey = this.#dataToArray(key);
+    console.log(arrayKey);
     const generateKey = this.#generateKey(arrayKey);
     let i = 10;
     let xorPK = 0;

@@ -1,4 +1,4 @@
-export default class CaesarChiper {
+class CaesarChiper {
   alphabets = "abcdefghijklmnopqrstuvwxyz".toUpperCase();
   constructor(plainText = "", key = "") {
     this.plainText = plainText;
@@ -31,6 +31,8 @@ export default class CaesarChiper {
   description(chiper, key) {
     const originalChiper = this.generateNewChiperText();
     const chiperWithKey = this.generateNewChiperText(key);
+    console.log(key);
+    console.log(chiperWithKey);
     return chiper
       .toUpperCase()
       .split("")

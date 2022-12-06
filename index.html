@@ -6,19 +6,120 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="assets/css/output.css">
 </head>
 
-<body>
-    <script type="module">
-        import CaesarChiper from "./Ceasar.js";
-        import AES128 from "./aes.js";
+
+<body class="bg-slate-200">
+    <div class="container h-[100vh] mx-auto  ">
+        <div class="flex flex-wrap h-full items-center justify-center ">
+            <div class="mt-4 max-w-2xl bg-white   block rounded-lg shadow-lg shadow-slate-400">
+                <form action="">
+                    <div class="mx-2 mb-5 flex flex-wrap h-90">
+                        <h1
+                            class="mt-5 mb-4 w-full bg-gradient-to-r  from-[#28ac50] to-[#56B4D3] bg-clip-text text-center text-3xl font-bold italic text-transparent">
+                            Caesar And AES</h1>
+                        <div class="mt-5 mx-4 w-full flex flex-wrap justify-between">
+                            <div class="w-full">
+                                <label for=""
+                                    class=" text-xl font-medium  after:ml-0.5 after:text-red-500 after:content-['*']">Chiper
+                                    Text Or PlainText</label>
+                                <input id="plainText" type="text" max="8" min="8"
+                                    class="focus:ring-none text-xl h-11 w-full rounded-lg bg-slate-500 p-2 font-normal italic text-white placeholder:text-sm placeholder:italic focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                                    placeholder="Input Your PlainText Caesar And AES" />
+                            </div>
+                            <div class="w-[49%] mt-5">
+                                <label for=""
+                                    class=" text-xl font-medium  after:ml-0.5 after:text-red-500 after:content-['*']">Key
+                                    Caesar</label>
+                                <input id="keyCaesar" type="number" max="26"
+                                    class="focus:ring-none text-xl h-11 w-full rounded-lg bg-slate-500 p-2 font-normal italic text-white placeholder:text-sm placeholder:italic focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                                    placeholder="Input Your Key  Caesar" />
+                            </div>
+                            <div class="w-[49%] mt-5">
+                                <label for=""
+                                    class=" text-xl font-medium  after:ml-0.5 after:text-red-500 after:content-['*']">Key
+                                    AES</label>
+                                <input id="keyAES" type="text" max="8" min="8"
+                                    class="focus:ring-none text-xl h-11 w-full rounded-lg bg-slate-500 p-2 font-normal italic text-white placeholder:text-sm placeholder:italic focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                                    placeholder="Input Key AES" />
+                            </div>
+
+                            <div class="w-full my-5 flex justify-start" id="containerEnDe">
+                                <a id="encode" href=""
+                                    class="  unactive p-2 rounded-lg text-white text-xl font-bold  relative btn-slider">
+                                    ENCODE</a>
+                                <a id="decode" href=""
+                                    class="active p-2 rounded-lg text-white mx-3 text-xl   font-bold  relative btn-slider">
+                                    DECODE</a>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 mx-5 flex w-full flex-wrap self-end ">
+                            <h1 class="text-xl italic w-full font-semibold">Result</h1>
+                            <p id="result" class=" italic  w-full text-slate-500">Lorem ipsum dolor sit
+                                amet
+                                consectetur
+                                adipisicing elit. Nemo enim adipisci eos maiores in.</p>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+
+
+        </div>
+    </div>
+    <script src="aes.js"></script>
+    <script src="Ceasar.js"></script>
+    <script>
+
+        const btnEncode = document.getElementById('containerEnDe');
+        const inputKey = document.getElementById("plainText");
+        const keyCaesar = document.getElementById("keyCaesar");
+        const keyAES = document.getElementById("keyAES");
+        const result = btnEncode.parentElement.nextElementSibling.lastElementChild;
+        console.log(result.innerHTML = "bapakdia");
+
+        btnEncode.addEventListener("click", function (e) {
+            e.preventDefault();
+            const plainText = inputKey.value;
+            const keyC = keyCaesar.value;
+            const keyA = keyAES.value;
+
+            if (e.target.id == "encode") {
+                const Caesar = new CaesarChiper(plainText, Number.parseInt(keyC));
+                const encCaesar = Caesar.encrypt();
+                const AESS = new AES(encCaesar, keyA);
+                const encAES = AESS.encription();
+                console.log(encCaesar, encAES);
+                result.innerHTML = `<b>Enkripsi Casesar =</b>${encCaesar} 
+                <b>Enkripsi AES =</b>${encAES}`
+
+            } else if (e.target.id = "decode") {
+                const AESS = new AES();
+                console.log(plainText, keyA, keyC);
+                const Caesar = new CaesarChiper();
+                const aesDesc = AESS.desc(plainText, keyA.toUpperCase());
+                const originPlainText = Caesar.description(aesDesc, Number.parseInt(keyC));
+                console.log(aesDesc, originPlainText);
+                result.innerHTML = `<b>Dekrispsi AES=</b>${aesDesc} 
+                <b>Dekripsi Ceaser=</b>${originPlainText}`
+
+            }
+        })
+        // e
+
+        const aes = document.getElementById("inputAES");
+        // end dom
         const plainText = "BOYHENRAWANPURBA";
         const Caesar = new CaesarChiper(plainText, 3);
         const encCaesar = Caesar.encrypt();
-        const AESS = new AES128(encCaesar, "KRIPTOGRAFIAESKU");
+        const AESS = new AES(encCaesar, "KRIPTOGRAFIAESKU");
         const valCiper = AESS.encription();
         const AESDESC = AESS.desc(valCiper, "KRIPTOGRAFIAESKU");
-        const originPlainText = Caesar.description(AESDESC);
+        const originPlainText = Caesar.description(AESDESC, 3);
 
         console.log(`\n\nPlain Text = ${plainText} 
 Enkripsi Ceasar = ${encCaesar} Enkripsi AES = ${valCiper}  
