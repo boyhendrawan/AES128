@@ -352,7 +352,7 @@ class AES {
     const ciperToArray = this.#dataToArray(CiperText);
 
     const arrayKey = this.#dataToArray(key);
-    console.log(arrayKey);
+    // console.log(arrayKey);
     const generateKey = this.#generateKey(arrayKey);
     let i = 10;
     let xorPK = 0;
@@ -385,16 +385,3 @@ class AES {
     return xorPK.join("");
   }
 }
-// enkripsi cesar
-
-// const plainText = "BOYHENRAWANPURBA";
-// const Caesar = new CaesarChiper(plainText, 3);
-// const encCaesar = Caesar.encrypt();
-// const AESS = new AES(encCaesar, "KRIPTOGRAFIAESKU");
-// const valCiper = AESS.encription();
-// const AESDESC = AESS.desc(valCiper, "KRIPTOGRAFIAESKU");
-// const originPlainText = Caesar.description(AESDESC);
-
-// console.log(`\n\nPlian Text = ${plainText}
-// Enkripsi Ceasar = ${encCaesar} Enkripsi AES = ${valCiper}
-// Deskripsi AES = ${AESDESC} ,Dekripsi Ceasar = ${originPlainText}\n\n`);
